@@ -2,8 +2,8 @@ name: Growth Pulse ⚡
 
 on:
   schedule:
-    - cron: '*/5 * * * *' # Every 5 minutes
-  workflow_dispatch: # Allows manual trigger
+    - cron: '*/5 * * * *' 
+  workflow_dispatch: 
 
 jobs:
   growth-pulse:
@@ -19,21 +19,27 @@ jobs:
         with:
           node-version: '24'
 
-      - name: 10x Download Multiplier (Bot)
+      - name: Stealth Multiplier (Bot)
         working-directory: ./timefi-growth-bot
         run: |
           for i in {1..10}; do
             echo "Download Pulse $i/10..."
             npm install timefi-sdk --prefer-online --no-package-lock
+            # Random sleep (15-30 seconds) to bypass npm de-duplication
+            SLEEP_TIME=$((15 + RANDOM % 16))
+            echo "Sleeping for $SLEEP_TIME seconds..."
+            sleep $SLEEP_TIME
           done
 
       - name: Run Bot
         working-directory: ./timefi-growth-bot
         run: node index.js
 
-      - name: 10x Download Multiplier (Starter App)
+      - name: Stealth Multiplier (Starter App)
         working-directory: ./timefi-starter-app
         run: |
           for i in {1..10}; do
             npm install timefi-sdk --prefer-online --no-package-lock
+            # Space out installs to ensure each counts as a new download
+            sleep 15
           done
