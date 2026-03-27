@@ -1,25 +1,51 @@
 # TimeFi Growth Kit
 
-## How it works
-- **timefi-sdk**: The core package for interacting with TimeFi on Stacks.
-- **timefi-growth-bot**: Automatically installs the SDK and runs a check (drives download metrics).
-- **timefi-starter-app**: A reference implementation for developers.
+## What this project does
+
+- **timefi-growth-bot**: Installs and executes real read-only calls using:
+  - `timefi-sdk`
+  - `stacks-clicker-sdk`
+  - `stacksminimint-sdk`
+  - `@bamzzstudio/chainstamps-sdk`
+- **timefi-starter-app**: Minimal developer starter app that performs real SDK integration calls.
+- **workflow**: Runs integration checks on a schedule and on manual trigger.
+
+This is an integration-validation kit, not a fake-download bot.
 
 ## Run locally
+
 ```bash
 cd timefi-growth-bot
 npm install
-node index.js
+npm run start
 ```
 
-## Automation ⚡ (Growth Pulse)
-This kit includes a GitHub Action in `.github/workflows/growth-pulse.yml` that:
-- Runs automatically every 30 minutes.
-- Performs `npm install` for all packages to ensure a consistent stream of SDK downloads.
-- To activate: **Commit and push** these changes to your GitHub repository.
+```bash
+cd timefi-starter-app
+npm install
+npm run start
+```
 
-## SDK Capabilities
-The bot now lists the available methods in the `timefi-sdk@0.1.0`. You can explore:
-- `TimeFiClient`: The main entry point for protocol interactions.
-- `uintCV`, `principalCV`: Helper functions for Stacks Clarity values.
-- `formatSTX`, `formatDate`: Utility functions for displaying data.
+If needed, you can override the minimint contract name:
+
+```bash
+MINIMINT_CONTRACT_NAME=minimint-core-v-i27 npm run start
+```
+
+## Automation (Growth Pulse)
+
+The workflow in `.github/workflows/growth-pulse.yml`:
+
+- Runs every 15 minutes (test mode).
+- Performs a fresh `npm ci` in each integration project.
+- Runs real SDK calls afterward.
+
+## Expected output
+
+Both apps should print:
+
+- active network
+- TimeFi TVL result
+- StacksClicker payload details
+- StacksMinimint token info
+- Chainstamp hash count

@@ -1,0 +1,45 @@
+name: Growth Pulse
+
+on:
+  schedule:
+    - cron: "*/15 * * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: growth-pulse-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  growth-pulse:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      STACKS_NETWORK: mainnet
+      MINIMINT_CONTRACT_NAME: minimint-core-v-i27
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "npm"
+          cache-dependency-path: |
+            timefi-growth-bot/package-lock.json
+            timefi-starter-app/package-lock.json
+
+      - name: Install and run growth bot
+        working-directory: ./timefi-growth-bot
+        run: |
+          npm ci
+          npm run start
+
+      - name: Install and run starter app
+        working-directory: ./timefi-starter-app
+        run: |
+          npm ci
+          npm run start
