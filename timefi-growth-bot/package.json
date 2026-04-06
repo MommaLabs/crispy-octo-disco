@@ -24,8 +24,8 @@
     "stacksminimint-utils": "^0.1.1",
     "stacksminimint-types": "^0.1.1",
     "timefi-sdk": "^0.1.4",
-    "timefi-protocol": "^0.1.1",
-    "timefi-utils": "^0.1.1",
-    "timefi-types": "^0.1.1"
+    "timefi-protocol": "^1.0.0",
+    "timefi-utils": "^1.0.0",
+    "timefi-types": "^1.0.0"
   }
 }
