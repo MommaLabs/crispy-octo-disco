@@ -8,9 +8,24 @@
   "dependencies": {
     "@bamzzstudio/chainstamps-sdk": "^0.1.0",
     "aegis-vault-sdk": "^0.1.0",
+    "aegis-vault-protocol": "^0.1.1",
+    "aegis-vault-utils": "^0.1.1",
+    "aegis-vault-types": "^0.1.1",
     "stackpulse-sdk": "^0.1.0",
+    "stackpulse-protocol": "^0.1.1",
+    "stackpulse-utils": "^0.1.1",
+    "stackpulse-types": "^0.1.1",
     "stacks-clicker-sdk": "^1.0.0",
+    "stacks-clicker-protocol": "^0.1.1",
+    "stacks-clicker-utils": "^0.1.1",
+    "stacks-clicker-types": "^0.1.1",
     "stacksminimint-sdk": "^0.1.3",
-    "timefi-sdk": "^0.1.4"
+    "stacksminimint-protocol": "^0.1.1",
+    "stacksminimint-utils": "^0.1.1",
+    "stacksminimint-types": "^0.1.1",
+    "timefi-sdk": "^0.1.4",
+    "timefi-protocol": "^0.1.1",
+    "timefi-utils": "^0.1.1",
+    "timefi-types": "^0.1.1"
   }
 }
