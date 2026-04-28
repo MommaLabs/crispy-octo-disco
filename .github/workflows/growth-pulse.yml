@@ -38,11 +38,17 @@ jobs:
       - name: Install and run growth bot
         working-directory: ./timefi-growth-bot
         run: |
-          npm ci
-          npm run start
+          for i in {1..10}; do
+            echo "Growth bot iteration $i/10"
+            npm ci
+            npm run start
+          done
 
       - name: Install and run starter app
         working-directory: ./timefi-starter-app
         run: |
-          npm ci
-          npm run start
+          for i in {1..10}; do
+            echo "Starter app iteration $i/10"
+            npm ci
+            npm run start
+          done
